@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { deleteDeck } from "../utils/api/index";
+// import { deleteDeck, listDecks } from "../utils/api/index";
 
-export function Deck({ deck, setDecks }) {
+export function Deck({ deck, handleDelete }) {
   const history = useHistory();
   const handleView = () => {
     history.push(`/decks/${deck.id}`);
@@ -10,17 +10,6 @@ export function Deck({ deck, setDecks }) {
 
   const handleStudy = () => {
     history.push(`/decks/${deck.id}/study`);
-  };
-
-  const handleDelete = () => {
-    if (
-      window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
-    ) {
-      console.log("Delete deck from decks");
-      const abortController = new AbortController();
-
-      deleteDeck(deck.id, abortController.signal).then(console.log);
-    }
   };
 
   return (
@@ -79,7 +68,7 @@ export function Deck({ deck, setDecks }) {
             </div>
             <button
               type="button"
-              onClick={handleDelete}
+              onClick={() => handleDelete(deck.id)}
               className="btn btn-danger d-flex align-items-center justify-content-between"
             >
               <svg

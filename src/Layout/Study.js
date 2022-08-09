@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Breadcrumb from "./Breadcrumb";
+import { Link } from "react-router-dom";
 import { readDeck } from "../utils/api/index";
 import { useEffect, useState } from "react";
 import Card from "./Card";
@@ -83,16 +84,21 @@ export default function Study() {
   if (deck.id) {
     return (
       <>
-        <Breadcrumb deckId={deckId} />
-        <h1>Study: {deck.name}</h1>
-        {/* <Card
-          deck={deck}
-          card={card}
-          cardId={cardId}
-          side={side}
-          handleFlip={handleFlip}
-          handleNext={handleNext}
-        /> */}
+        {/* <Breadcrumb deckId={deckId} /> */}
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link to={`/decks/${deckId}`}>{deck.name}</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Study
+            </li>
+          </ol>
+        </nav>
+        <h1>{deck.name}: Study</h1>
         {content}
       </>
     );

@@ -4,9 +4,10 @@ import { CreateButton } from "./CreateButton";
 import Header from "./Header";
 import NotFound from "./NotFound";
 import Decks from "./Decks";
-import NewDeck from "./NewDeck";
+import CreateDeck from "./CreateDeck";
 import ViewDeck from "./ViewDeck";
 import Study from "./Study";
+import AddCards from "./AddCards";
 
 function Layout() {
   return (
@@ -20,10 +21,13 @@ function Layout() {
             <Decks />
           </Route>
           <Route path={"/decks/new"}>
-            <NewDeck />
+            <CreateDeck />
           </Route>
           <Route exact path={"/decks/:deckId/study"}>
             <Study />
+          </Route>
+          <Route exact path={"/decks/:deckId/cards/new"}>
+            <AddCards />
           </Route>
           <Route path={"/decks/:deckId"}>
             <ViewDeck />

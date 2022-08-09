@@ -17,10 +17,9 @@ export default function Decks() {
     if (
       window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
     ) {
-      console.log("Delete deck from decks");
       const abortController = new AbortController();
 
-      deleteDeck(id, abortController.signal).then(console.log);
+      deleteDeck(id, abortController.signal);
       setDecks((currentDecks) => currentDecks.filter((deck) => deck.id !== id));
     }
   };

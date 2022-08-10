@@ -19,6 +19,8 @@ export default function EditDeck() {
       const abortController = new AbortController();
       const deck = await readDeck(deckId, abortController.signal);
       setDeck(deck);
+      setName(deck.name);
+      setDescription(deck.description);
     }
     loadDeck();
   }, []);
@@ -61,7 +63,7 @@ export default function EditDeck() {
               type="text"
               id="name"
               name="name"
-              placeholder="Deck Name"
+              value={name}
               onChange={handleNameChange}
               className="form-control"
             />
@@ -78,7 +80,7 @@ export default function EditDeck() {
               className="form-control"
               id="exampleFormControlTextarea1"
               rows="3"
-              placeholder="Brief description of the deck"
+              value={description}
               onChange={handleDescriptionChange}
             ></textarea>
           </div>

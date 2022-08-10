@@ -1,23 +1,21 @@
 import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
+import { useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { createCard, readDeck } from "../utils/api/index";
+import { readCard, updateCard, readDeck } from "../utils/api/index";
 
-export default function AddCards() {
+export default function EditCard() {
   const [front, setFront] = useState("");
   const [back, setBack] = useState("");
+
   const [deck, setDeck] = useState([]);
+  const [card, setCard] = useState([]);
+
   const handleFrontChange = (event) => setFront(event.target.value);
   const handleBackChange = (event) => setBack(event.target.value);
 
   const history = useHistory();
-  const { deckId } = useParams();
-
-  async function addCard(card) {
-    const abortController = new AbortController();
-    return await createCard(deckId, card, abortController.signal);
-  }
+  const { deckId, cardId } = useParams();
 
   useEffect(() => {
     async function loadDeck() {
@@ -25,15 +23,27 @@ export default function AddCards() {
       const deck = await readDeck(deckId, abortController.signal);
       setDeck(deck);
     }
+    async function loadCard() {
+      const abortController = new AbortController();
+      const card = await readCard(cardId, abortController.signal);
+      setCard(card);
+      setFront(card.front);
+      setBack(card.back);
+    }
     loadDeck();
+    loadCard();
   }, []);
+
+  async function editDeck(card) {
+    const abortController = new AbortController();
+    return await updateCard(card, abortController.signal);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const cardObj = { front, back };
-    addCard(cardObj);
-    event.target[0].value = "";
-    event.target[1].value = "";
+    const cardObj = { front, back, id: card.id, deckId: Number(deckId) };
+    console.log(cardObj);
+    editDeck(cardObj).then((resp) => history.push(`/decks/${deckId}`));
   };
 
   return (
@@ -47,24 +57,24 @@ export default function AddCards() {
             <Link to={`/decks/${deck.id}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Add Card
+            Edit Card {cardId}
           </li>
         </ol>
       </nav>
-      <h1>{deck.name}: Add Card</h1>
+      <h1>Edit Card</h1>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <div className="form-group row">
-            <label htmlFor="front" className="col-sm-2 col-form-label">
+            <label htmlFor="name" className="col-sm-2 col-form-label">
               Front
             </label>
 
             <textarea
+              className="form-control"
               id="front"
               rows="2"
-              placeholder="Front side of card"
+              value={front}
               onChange={handleFrontChange}
-              className="form-control"
             ></textarea>
           </div>
           <div className="form-group row">
@@ -79,16 +89,16 @@ export default function AddCards() {
               className="form-control"
               id="back"
               rows="2"
-              placeholder="Back side of card"
+              value={back}
               onChange={handleBackChange}
             ></textarea>
           </div>
-          <a href={`/decks/${deckId}`} className="btn btn-secondary mr-1">
+          <a href={`/decks/${deck.id}`} className="btn btn-secondary mr-1">
             {" "}
-            Done{" "}
+            Cancel{" "}
           </a>
           <button type="submit" className="btn btn-primary">
-            Save
+            Submit
           </button>
         </form>
       </div>

@@ -85,19 +85,19 @@ export default function ViewDeck() {
         >
           <CreateButton
             text="Edit"
-            path={`/decks/${deckId}/edit`} ///decks/:deckId/edit
+            path={`/decks/${deckId}/edit`}
             icon={"edit"}
           />
           <CreateButton
             color="btn-primary"
             text="Study"
-            path={`/decks/${deckId}/study`} ///decks/:deckId/study
+            path={`/decks/${deckId}/study`}
             icon={"journal"}
           />
           <CreateButton
             color="btn-primary"
             text="Add Cards"
-            path={`/decks/${deckId}/cards/new`} ///decks/:deckId/edit
+            path={`/decks/${deckId}/cards/new`}
             icon={"plus"}
           />
         </div>

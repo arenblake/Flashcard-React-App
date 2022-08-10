@@ -21,7 +21,6 @@ export default function Study() {
     async function loadCards() {
       const deck = await readDeck(deckId, abortController.signal);
       setDeck(deck);
-      // setCard(deck.cards.find(({ id }) => id === 4));
       setCard(deck.cards[cardId]);
     }
     loadCards();
@@ -39,7 +38,6 @@ export default function Study() {
       setSide(!side);
       setCardId((currentId) => currentId + 1);
       setCard(deck.cards[cardId]);
-      // setCard(deck.cards.find(({ id }) => id === card.id + 1));
     } else {
       window.confirm(
         "Restart cards?\n\nClick 'cancel' to return to the home page."
@@ -88,7 +86,6 @@ export default function Study() {
   if (deck.id) {
     return (
       <>
-        {/* <Breadcrumb deckId={deckId} /> */}
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">

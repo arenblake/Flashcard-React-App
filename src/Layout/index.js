@@ -16,7 +16,6 @@ function Layout() {
     <>
       <Header />
       <div className="container">
-        {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route exact path={"/"}>
             <CreateButton

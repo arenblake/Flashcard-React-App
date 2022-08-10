@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../utils/api/index";
 
 export default function AddCards() {
@@ -11,7 +11,6 @@ export default function AddCards() {
   const handleFrontChange = (event) => setFront(event.target.value);
   const handleBackChange = (event) => setBack(event.target.value);
 
-  const history = useHistory();
   const { deckId } = useParams();
 
   async function addCard(card) {

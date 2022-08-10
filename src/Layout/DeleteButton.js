@@ -2,16 +2,6 @@ import React from "react";
 import { deleteDeck } from "../utils/api/index";
 
 export default function DeleteButton({ handleDelete, deckId }) {
-  //   const handleDelete = (id) => {
-  //     if (
-  //       window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
-  //     ) {
-  //       const abortController = new AbortController();
-
-  //       deleteDeck(id, abortController.signal);
-  //       //   setDecks((currentDecks) => currentDecks.filter((deck) => deck.id !== id));
-  //     }
-  //   };
   return (
     <button
       type="button"

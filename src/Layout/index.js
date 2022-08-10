@@ -8,6 +8,7 @@ import CreateDeck from "./CreateDeck";
 import ViewDeck from "./ViewDeck";
 import Study from "./Study";
 import AddCards from "./AddCards";
+import EditDeck from "./EditDeck";
 
 function Layout() {
   return (
@@ -17,7 +18,11 @@ function Layout() {
         {/* TODO: Implement the screen starting here */}
         <Switch>
           <Route exact path={"/"}>
-            <CreateButton text="Create Deck" path={"/decks/new"} />
+            <CreateButton
+              text="Create Deck"
+              path={"/decks/new"}
+              icon={"plus"}
+            />
             <Decks />
           </Route>
           <Route path={"/decks/new"}>
@@ -25,6 +30,9 @@ function Layout() {
           </Route>
           <Route exact path={"/decks/:deckId/study"}>
             <Study />
+          </Route>
+          <Route exact path={"/decks/:deckId/edit"}>
+            <EditDeck />
           </Route>
           <Route exact path={"/decks/:deckId/cards/new"}>
             <AddCards />

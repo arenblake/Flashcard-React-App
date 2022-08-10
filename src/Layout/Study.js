@@ -76,7 +76,11 @@ export default function Study() {
           You need at least 3 cards to study. There are {deck?.cards?.length}{" "}
           cards in this deck
         </p>
-        <CreateButton text="Add Cards" path={`/decks/${deckId}/cards/new`} />
+        <CreateButton
+          text="Add Cards"
+          path={`/decks/${deckId}/cards/new`}
+          icon={"plus"}
+        />
       </>
     );
   }

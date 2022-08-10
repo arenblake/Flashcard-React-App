@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
-import Breadcrumb from "./Breadcrumb";
 import { Link } from "react-router-dom";
 import { readDeck } from "../utils/api/index";
 import { useEffect, useState } from "react";

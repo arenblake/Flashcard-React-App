@@ -1,29 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Deck from "./Deck";
-import { listDecks, deleteDeck } from "../utils/api/index";
 
-export default function Decks() {
-  const [decks, setDecks] = useState([]);
-
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    listDecks(abortController.signal).then(setDecks);
-
-    return () => abortController.abort();
-  }, []);
-
-  const handleDelete = (id) => {
-    if (
-      window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
-    ) {
-      const abortController = new AbortController();
-
-      deleteDeck(id, abortController.signal);
-      setDecks((currentDecks) => currentDecks.filter((deck) => deck.id !== id));
-    }
-  };
-
+export default function Decks({ decks, handleDelete }) {
   const deckList = decks.map((deck) => (
     <Deck key={deck.id} deck={deck} handleDelete={handleDelete} />
   ));

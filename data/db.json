@@ -13,9 +13,9 @@
   ],
   "cards": [
     {
+      "front": "Differentiate between Real DOM and Virtual DOM. rfdrdr",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML srfrfsrefsrfs",
       "id": 1,
-      "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DOM updates are faster but do not directly update the HTML",
       "deckId": 1
     },
     {
@@ -47,6 +47,24 @@
       "back": "bsdvsdvsdv",
       "id": 7,
       "deckId": 1
+    },
+    {
+      "front": "sdsdvsrgsrsr    sevsefsevf",
+      "back": "sevsev     sefsefsef",
+      "id": 8,
+      "deckId": 1
+    },
+    {
+      "front": "sefsef",
+      "back": "sefsesfesefsefsefse    aaaadddd cccaarrddddd",
+      "deckId": 1,
+      "id": 9
+    },
+    {
+      "front": "sefsefsefs",
+      "back": "sefsefsefsefsefsefsefsefse 22222222",
+      "deckId": 1,
+      "id": 10
     }
   ]
 }

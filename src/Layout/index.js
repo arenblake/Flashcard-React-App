@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { CreateButton } from "./CreateButton";
 import Header from "./Header";
@@ -10,8 +10,28 @@ import Study from "./Study";
 import AddCards from "./AddCards";
 import EditDeck from "./EditDeck";
 import EditCard from "./EditCard";
+import CardForm from "./CardForm";
+import { listDecks, deleteDeck } from "../utils/api/index";
 
 function Layout() {
+  const [decks, setDecks] = useState([]);
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    listDecks(abortController.signal).then(setDecks);
+    return () => abortController.abort();
+  }, []);
+
+  const handleDelete = (id) => {
+    if (
+      window.confirm("Delete this deck?\n\nYou will not be able to recover it.")
+    ) {
+      const abortController = new AbortController();
+      deleteDeck(id, abortController.signal);
+      setDecks((currentDecks) => currentDecks.filter((deck) => deck.id !== id));
+    }
+  };
+
   return (
     <>
       <Header />
@@ -23,7 +43,7 @@ function Layout() {
               path={"/decks/new"}
               icon={"plus"}
             />
-            <Decks />
+            <Decks decks={decks} handleDelete={handleDelete} />
           </Route>
           <Route path={"/decks/new"}>
             <CreateDeck />

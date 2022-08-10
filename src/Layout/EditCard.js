@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { readCard, updateCard, readDeck } from "../utils/api/index";
+import CardForm from "./CardForm";
 
 export default function EditCard() {
   const [front, setFront] = useState("");
@@ -62,46 +63,15 @@ export default function EditCard() {
         </ol>
       </nav>
       <h1>Edit Card</h1>
-      <div className="container">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group row">
-            <label htmlFor="name" className="col-sm-2 col-form-label">
-              Front
-            </label>
-
-            <textarea
-              className="form-control"
-              id="front"
-              rows="2"
-              value={front}
-              onChange={handleFrontChange}
-            ></textarea>
-          </div>
-          <div className="form-group row">
-            <label
-              htmlFor="exampleFormControlTextarea1"
-              className="col-sm-2 col-form-label"
-            >
-              Back
-            </label>
-
-            <textarea
-              className="form-control"
-              id="back"
-              rows="2"
-              value={back}
-              onChange={handleBackChange}
-            ></textarea>
-          </div>
-          <a href={`/decks/${deck.id}`} className="btn btn-secondary mr-1">
-            {" "}
-            Cancel{" "}
-          </a>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
-      </div>
+      <CardForm
+        handleSubmit={handleSubmit}
+        handleFrontChange={handleFrontChange}
+        handleBackChange={handleBackChange}
+        front={front}
+        back={back}
+        deck={deck}
+        cardId={cardId}
+      />
     </>
   );
 }

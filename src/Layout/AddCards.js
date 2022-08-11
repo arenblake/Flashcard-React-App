@@ -26,7 +26,7 @@ export default function AddCards() {
       setDeck(deck);
     }
     loadDeck();
-  }, []);
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();

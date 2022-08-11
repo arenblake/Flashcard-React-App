@@ -1,5 +1,4 @@
 import React from "react";
-import { deleteDeck } from "../utils/api/index";
 
 export default function DeleteButton({ handleDelete, deckId }) {
   return (

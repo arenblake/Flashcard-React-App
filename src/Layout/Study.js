@@ -25,7 +25,7 @@ export default function Study() {
     loadCards();
 
     return () => abortController.abort();
-  }, [deckId]);
+  }, [deckId, cardId]);
 
   const handleFlip = () => {
     setSide(!side);

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { readDeck, deleteDeck, deleteCard } from "../utils/api/index";
 import { CreateButton } from "./CreateButton";
 import DeleteButton from "./DeleteButton";
+import ViewDeckCards from "./ViewDeckCards";
 
 export default function ViewDeck() {
   const [deck, setDeck] = useState([]);
@@ -16,23 +17,14 @@ export default function ViewDeck() {
     setDeck(deck);
     setCards(
       deck?.cards?.map((card) => (
-        <div key={card.id} className="card w-50">
-          <div className="card-body">
-            <div className="d-flex">
-              <p className="card-text">{card.front}</p>
-              <p className="card-text">{card.back}</p>
-            </div>
-            <div className="d-flex justify-content-end">
-              <div className="mr-2">
-                <CreateButton
-                  text="Edit"
-                  path={`/decks/${deck.id}/cards/${card.id}/edit`}
-                />
-              </div>
-              <DeleteButton handleDelete={handleDeleteCard} deckId={card.id} />
-            </div>
-          </div>
-        </div>
+        <ViewDeckCards
+          key={card.id}
+          front={card.front}
+          back={card.back}
+          deckId={deckId}
+          cardId={card.id}
+          handleDeleteCard={handleDeleteCard}
+        />
       ))
     );
   }

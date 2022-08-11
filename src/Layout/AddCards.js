@@ -32,8 +32,8 @@ export default function AddCards() {
     event.preventDefault();
     const cardObj = { front, back };
     addCard(cardObj);
-    event.target[0].value = "";
-    event.target[1].value = "";
+    setFront("");
+    setBack("");
   };
 
   return (
